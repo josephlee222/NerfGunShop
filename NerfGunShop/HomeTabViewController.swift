@@ -8,16 +8,24 @@
 import UIKit
 
 class HomeTabViewController: UITabBarController {
-
+    
+    let shopSearchController = UISearchController()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.prefersLargeTitles = true
+        shopSearchController.searchBar.placeholder = "Search the store..."
+        navigationItem.searchController = shopSearchController
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         title = item.title
+        if item.title == "Shop" {
+            navigationItem.searchController = shopSearchController
+        } else {
+            navigationItem.searchController = nil
+        }
     }
     
     @IBAction func logoutBtn(_ sender: Any) {

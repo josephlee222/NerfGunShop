@@ -15,6 +15,8 @@
 		6816BA5A27B4F1980059B497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6816BA5927B4F1980059B497 /* Assets.xcassets */; };
 		6816BA5D27B4F1980059B497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6816BA5B27B4F1980059B497 /* LaunchScreen.storyboard */; };
 		6816BA6527B4FD8B0059B497 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6816BA6427B4FD8B0059B497 /* RegisterViewController.swift */; };
+		87318A1E27B7D11600B163FC /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87318A1D27B7D11600B163FC /* ShopViewController.swift */; };
+		87318A2027B7D70200B163FC /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87318A1F27B7D70200B163FC /* CartTableViewCell.swift */; };
 		876F9DA327B6B78400A044ED /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F9DA227B6B78300A044ED /* CartViewController.swift */; };
 		879D395527B6607600BC4871 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879D395427B6607600BC4871 /* HomeTabViewController.swift */; };
 		87D1182E27B5417E00EA7371 /* StandardFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1182D27B5417E00EA7371 /* StandardFunctions.swift */; };
@@ -31,6 +33,8 @@
 		6816BA5C27B4F1980059B497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6816BA5E27B4F1980059B497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6816BA6427B4FD8B0059B497 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		87318A1D27B7D11600B163FC /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		87318A1F27B7D70200B163FC /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		876F9DA227B6B78300A044ED /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		879D395427B6607600BC4871 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
 		87D1182D27B5417E00EA7371 /* StandardFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardFunctions.swift; sourceTree = "<group>"; };
@@ -73,11 +77,13 @@
 				876F9DA227B6B78300A044ED /* CartViewController.swift */,
 				87D1182D27B5417E00EA7371 /* StandardFunctions.swift */,
 				6816BA5327B4F1960059B497 /* Main.storyboard */,
+				87318A1F27B7D70200B163FC /* CartTableViewCell.swift */,
 				6816BA5927B4F1980059B497 /* Assets.xcassets */,
 				6816BA5B27B4F1980059B497 /* LaunchScreen.storyboard */,
 				6816BA5E27B4F1980059B497 /* Info.plist */,
 				6816BA5627B4F1960059B497 /* NerfGunShop.xcdatamodeld */,
 				879D395427B6607600BC4871 /* HomeTabViewController.swift */,
+				87318A1D27B7D11600B163FC /* ShopViewController.swift */,
 			);
 			path = NerfGunShop;
 			sourceTree = "<group>";
@@ -154,10 +160,12 @@
 			files = (
 				6816BA5227B4F1960059B497 /* ViewController.swift in Sources */,
 				6816BA6527B4FD8B0059B497 /* RegisterViewController.swift in Sources */,
+				87318A1E27B7D11600B163FC /* ShopViewController.swift in Sources */,
 				87D1182E27B5417E00EA7371 /* StandardFunctions.swift in Sources */,
 				879D395527B6607600BC4871 /* HomeTabViewController.swift in Sources */,
 				876F9DA327B6B78400A044ED /* CartViewController.swift in Sources */,
 				6816BA4E27B4F1960059B497 /* AppDelegate.swift in Sources */,
+				87318A2027B7D70200B163FC /* CartTableViewCell.swift in Sources */,
 				6816BA5027B4F1960059B497 /* SceneDelegate.swift in Sources */,
 				6816BA5827B4F1960059B497 /* NerfGunShop.xcdatamodeld in Sources */,
 			);
