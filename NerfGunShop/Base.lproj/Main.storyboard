@@ -239,14 +239,24 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bd5-77-vwX" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="739.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o5c-Br-hCU">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o5c-Br-hCU">
                                                 <rect key="frame" x="20" y="20" width="374" height="200"/>
                                                 <color key="backgroundColor" red="0.93747562169999998" green="0.53882050510000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="c90-EF-yMe"/>
                                                 </constraints>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="7iH-fg-mfC" appends="YES" id="ffw-E8-0P2"/>
+                                                    <outletCollection property="gestureRecognizers" destination="cEs-uP-H0e" appends="YES" id="J5f-iv-Wvn"/>
+                                                </connections>
                                             </imageView>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="mHw-Pt-I6f">
                                                 <rect key="frame" x="20" y="228" width="374" height="27.5"/>
@@ -257,18 +267,18 @@
                                                 <rect key="frame" x="20" y="275.5" width="374" height="128"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3Me-BI-S0z">
-                                                        <rect key="frame" x="155" y="18" width="64" height="92.5"/>
+                                                        <rect key="frame" x="146" y="18" width="82.5" height="92.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shippingbox.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XdH-r0-wsq">
-                                                                <rect key="frame" x="0.0" y="-0.5" width="64" height="64.5"/>
+                                                                <rect key="frame" x="9" y="-0.5" width="64" height="64.5"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="64" id="Jch-nl-Xv7"/>
                                                                     <constraint firstAttribute="height" constant="64" id="gHp-d9-l2E"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-Q6-M6f">
-                                                                <rect key="frame" x="11" y="72" width="42.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nerf Guns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhu-Q6-M6f">
+                                                                <rect key="frame" x="0.0" y="72" width="82.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -366,7 +376,7 @@
                                                     <constraint firstAttribute="height" constant="128" id="iVT-sE-62p"/>
                                                 </constraints>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random Nerf Gun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-WT-73n">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Random Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohW-WT-73n">
                                                 <rect key="frame" x="20" y="559.5" width="374" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
@@ -383,8 +393,8 @@
                                                             <constraint firstAttribute="width" constant="64" id="HMV-wh-FMB"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="X9g-Am-wil">
-                                                        <rect key="frame" x="104" y="39.5" width="250" height="49"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="X9g-Am-wil">
+                                                        <rect key="frame" x="104" y="41.5" width="250" height="45"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFj-Fd-1yG">
                                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="20.5"/>
@@ -393,7 +403,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TnA-H5-Qf8">
-                                                                <rect key="frame" x="0.0" y="28.5" width="250" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="24.5" width="250" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -402,6 +412,7 @@
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="rqn-ko-nyh" firstAttribute="centerY" secondItem="MJQ-lJ-Ejd" secondAttribute="centerY" id="5s2-yQ-2Yc"/>
                                                     <constraint firstItem="rqn-ko-nyh" firstAttribute="leading" secondItem="MJQ-lJ-Ejd" secondAttribute="leading" constant="20" id="KmM-te-CPa"/>
@@ -415,6 +426,9 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Hj6-ZA-fhB" appends="YES" id="cAT-GF-4cf"/>
+                                                </connections>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -463,8 +477,30 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Shop" image="house.fill" catalog="system" id="CVP-U0-P0i"/>
                     <size key="freeformSize" width="414" height="1200"/>
+                    <connections>
+                        <outlet property="carouselImg" destination="o5c-Br-hCU" id="k9l-FF-YGN"/>
+                        <outlet property="carouselPageControl" destination="mHw-Pt-I6f" id="R14-9n-jzH"/>
+                        <outlet property="randomProductDesc" destination="TnA-H5-Qf8" id="QwE-1E-5JJ"/>
+                        <outlet property="randomProductImg" destination="rqn-ko-nyh" id="B4H-by-YWe"/>
+                        <outlet property="randomProductName" destination="pFj-Fd-1yG" id="jiu-rt-Rtl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5SJ-pB-xHl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Hj6-ZA-fhB">
+                    <connections>
+                        <action selector="tappedRandomItem:" destination="boG-WG-ce4" id="OP0-la-Ig5"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="7iH-fg-mfC">
+                    <connections>
+                        <action selector="swipeCarouselImg:" destination="boG-WG-ce4" id="8jp-fh-snf"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="cEs-uP-H0e">
+                    <connections>
+                        <action selector="swipeCarouselImg:" destination="boG-WG-ce4" id="eRF-sx-V8l"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3960.8695652173915" y="-342.1875"/>
         </scene>
@@ -639,8 +675,8 @@
                                                         <constraint firstAttribute="height" constant="64" id="t63-pL-i2F"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="j4o-rc-Vud">
-                                                    <rect key="frame" x="104" y="32.5" width="290" height="60.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="j4o-rc-Vud">
+                                                    <rect key="frame" x="104" y="34.5" width="290" height="56.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5c-lt-45r">
                                                             <rect key="frame" x="0.0" y="0.0" width="35.5" height="20.5"/>
@@ -649,7 +685,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4qv-Sc-xRN">
-                                                            <rect key="frame" x="0.0" y="28.5" width="148" height="32"/>
+                                                            <rect key="frame" x="0.0" y="24.5" width="148" height="32"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty: 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0a-7R-NUb">
                                                                     <rect key="frame" x="0.0" y="0.0" width="44" height="32"/>
@@ -708,6 +744,34 @@
                 <exit id="6GP-bm-1bE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1757.9710144927537" y="-560.49107142857144"/>
+        </scene>
+        <!--Shop Search View Controller-->
+        <scene sceneID="xjX-Yq-S3y">
+            <objects>
+                <tableViewController id="p8n-dh-wJw" customClass="ShopSearchViewController" customModule="NerfGunShop" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="z8Y-Jn-OFd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchItem" id="txs-hm-LY9">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="txs-hm-LY9" id="Unl-w6-hfB">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="p8n-dh-wJw" id="VzT-cF-sSb"/>
+                            <outlet property="delegate" destination="p8n-dh-wJw" id="AWf-ld-Ury"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Je-wS-VnH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2470" y="-560"/>
         </scene>
     </scenes>
     <resources>

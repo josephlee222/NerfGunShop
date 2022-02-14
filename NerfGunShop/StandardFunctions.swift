@@ -76,6 +76,7 @@ func debugPrintLoginUserDefaults() {
     print(UserDefaults.standard.string(forKey: "userLoginId")!)
 }
 
+// Function to insert a product category
 func insertCategory(name:String, description:String, imageName:String) {
     if !checkUserDefaultsKeyExist(key: "categoryIdCount") {
         UserDefaults.standard.setValue(0, forKey: "categoryIdCount")
@@ -91,6 +92,7 @@ func insertCategory(name:String, description:String, imageName:String) {
     UserDefaults.standard.set(id, forKey: "categoryIdCount")
 }
 
+// Function to insert a product
 func insertProduct(name:String, description:String, price:Float, categoryId:Int16, imageName:String) {
     if !checkUserDefaultsKeyExist(key: "productIdCount") {
         UserDefaults.standard.setValue(0, forKey: "productIdCount")
@@ -108,6 +110,7 @@ func insertProduct(name:String, description:String, price:Float, categoryId:Int1
     UserDefaults.standard.set(id, forKey: "productIdCount")
 }
 
+// Function to insert a product to a users cart
 func insertCart(userId:Int16, itemId:Int16, qty:Int16) {
     if !checkUserDefaultsKeyExist(key: "cartIdCount") {
         UserDefaults.standard.setValue(0, forKey: "cartIdCount")
@@ -120,4 +123,17 @@ func insertCart(userId:Int16, itemId:Int16, qty:Int16) {
     insert.id = id
     app.saveContext()
     UserDefaults.standard.set(id, forKey: "cartIdCount")
+}
+
+// Function to get all products
+func getProducts() -> [Product] {
+    let productRequest:NSFetchRequest = Product.fetchRequest()
+    
+    var products:[Product]?
+    do {
+        products = try viewContext.fetch(productRequest)
+    } catch {
+        print(error)
+    }
+    return products ?? []
 }

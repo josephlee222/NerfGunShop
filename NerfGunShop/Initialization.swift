@@ -17,5 +17,7 @@ func initializeData() {
     
     //Insert products
     insertProduct(name: "Testing product 1", description: "This is testing product 1 inside the testing category", price: 100, categoryId: 1, imageName: "questionmark.diamond.fill")
+    insertProduct(name: "Testing product 2", description: "This is testing product 2 inside the testing category", price: 100, categoryId: 1, imageName: "questionmark.diamond.fill")
+    insertProduct(name: "Testing product 3", description: "This is testing product 3 inside the testing category", price: 100, categoryId: 1, imageName: "questionmark.diamond.fill")
 
 }

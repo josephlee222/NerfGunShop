@@ -7,9 +7,20 @@
 
 import UIKit
 
-class HomeTabViewController: UITabBarController {
+class ShopSearchViewController:UITableViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
     
-    let shopSearchController = UISearchController()
+    func updateSearchResultsTable(products:[Product]) {
+        
+    }
+}
+
+class HomeTabViewController: UITabBarController,UISearchResultsUpdating {
+
+    let shopSearchController = UISearchController(searchResultsController: ShopSearchViewController())
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +56,10 @@ class HomeTabViewController: UITabBarController {
     @IBAction func cartBtn(_ sender: Any) {
         //self.present(createSimpleAlert(title: "Cart press", message: "Placeholder"), animated: true, completion: nil)
         performSegue(withIdentifier: "toCart", sender: nil)
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
     
     @IBAction func unwindToHome(segue:UIStoryboardSegue) {
