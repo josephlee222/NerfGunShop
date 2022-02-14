@@ -7,6 +7,10 @@
 
 import Foundation
 import UIKit
+import CoreData
+
+let app = UIApplication.shared.delegate as! AppDelegate
+var viewContext:NSManagedObjectContext = app.persistentContainer.viewContext
 
 // Function to check if a userdefaults key exist
 func checkUserDefaultsKeyExist(key:String) -> Bool {
@@ -70,4 +74,50 @@ func debugPrintLoginUserDefaults() {
     print(UserDefaults.standard.string(forKey: "userLoginCredits")!)
     print(UserDefaults.standard.string(forKey: "userLoginIsAdmin")!)
     print(UserDefaults.standard.string(forKey: "userLoginId")!)
+}
+
+func insertCategory(name:String, description:String, imageName:String) {
+    if !checkUserDefaultsKeyExist(key: "categoryIdCount") {
+        UserDefaults.standard.setValue(0, forKey: "categoryIdCount")
+    }
+    
+    let id = Int16(UserDefaults.standard.integer(forKey: "categoryIdCount") + 1)
+    let insert = NSEntityDescription.insertNewObject(forEntityName: "Category", into: viewContext) as! Category
+    insert.name = name
+    insert.about = description
+    insert.image = imageName
+    insert.id = id
+    app.saveContext()
+    UserDefaults.standard.set(id, forKey: "categoryIdCount")
+}
+
+func insertProduct(name:String, description:String, price:Float, categoryId:Int16, imageName:String) {
+    if !checkUserDefaultsKeyExist(key: "productIdCount") {
+        UserDefaults.standard.setValue(0, forKey: "productIdCount")
+    }
+    
+    let id = Int16(UserDefaults.standard.integer(forKey: "productIdCount") + 1)
+    let insert = NSEntityDescription.insertNewObject(forEntityName: "Product", into: viewContext) as! Product
+    insert.name = name
+    insert.about = description
+    insert.categoryId = categoryId
+    insert.image = imageName
+    insert.price = price
+    insert.id = id
+    app.saveContext()
+    UserDefaults.standard.set(id, forKey: "productIdCount")
+}
+
+func insertCart(userId:Int16, itemId:Int16, qty:Int16) {
+    if !checkUserDefaultsKeyExist(key: "cartIdCount") {
+        UserDefaults.standard.setValue(0, forKey: "cartIdCount")
+    }
+    
+    let id = Int16(UserDefaults.standard.integer(forKey: "cartIdCount") + 1)
+    let insert = NSEntityDescription.insertNewObject(forEntityName: "Cart", into: viewContext) as! Cart
+    insert.itemId = itemId
+    insert.userId = userId
+    insert.id = id
+    app.saveContext()
+    UserDefaults.standard.set(id, forKey: "cartIdCount")
 }

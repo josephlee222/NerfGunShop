@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         //Checking if ID counters exists
         if !checkUserDefaultsKeyExist(key: "userIdCount") {
             UserDefaults.standard.setValue(0, forKey: "userIdCount")
+            initializeData()
         }
         
         //Init the viewcontext

@@ -15,8 +15,10 @@
 		6816BA5A27B4F1980059B497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6816BA5927B4F1980059B497 /* Assets.xcassets */; };
 		6816BA5D27B4F1980059B497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6816BA5B27B4F1980059B497 /* LaunchScreen.storyboard */; };
 		6816BA6527B4FD8B0059B497 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6816BA6427B4FD8B0059B497 /* RegisterViewController.swift */; };
+		870E7E1B27BA2CB5001B95A5 /* Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870E7E1A27BA2CB5001B95A5 /* Initialization.swift */; };
 		87318A1E27B7D11600B163FC /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87318A1D27B7D11600B163FC /* ShopViewController.swift */; };
 		87318A2027B7D70200B163FC /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87318A1F27B7D70200B163FC /* CartTableViewCell.swift */; };
+		8752498C27BA405C0059E0CA /* v1migrationmodel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8752498B27BA405C0059E0CA /* v1migrationmodel.xcmappingmodel */; };
 		876F9DA327B6B78400A044ED /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F9DA227B6B78300A044ED /* CartViewController.swift */; };
 		879D395527B6607600BC4871 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879D395427B6607600BC4871 /* HomeTabViewController.swift */; };
 		87D1182E27B5417E00EA7371 /* StandardFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1182D27B5417E00EA7371 /* StandardFunctions.swift */; };
@@ -33,8 +35,12 @@
 		6816BA5C27B4F1980059B497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6816BA5E27B4F1980059B497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6816BA6427B4FD8B0059B497 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		870E7E1A27BA2CB5001B95A5 /* Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initialization.swift; sourceTree = "<group>"; };
+		870E7E1C27BA31E6001B95A5 /* NerfGunShop v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "NerfGunShop v1.1.xcdatamodel"; sourceTree = "<group>"; };
 		87318A1D27B7D11600B163FC /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		87318A1F27B7D70200B163FC /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
+		8752498A27BA37F80059E0CA /* NerfGunShop v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "NerfGunShop v1.2.xcdatamodel"; sourceTree = "<group>"; };
+		8752498B27BA405C0059E0CA /* v1migrationmodel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = v1migrationmodel.xcmappingmodel; sourceTree = "<group>"; };
 		876F9DA227B6B78300A044ED /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		879D395427B6607600BC4871 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
 		87D1182D27B5417E00EA7371 /* StandardFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardFunctions.swift; sourceTree = "<group>"; };
@@ -70,12 +76,14 @@
 		6816BA4C27B4F1960059B497 /* NerfGunShop */ = {
 			isa = PBXGroup;
 			children = (
+				8752498B27BA405C0059E0CA /* v1migrationmodel.xcmappingmodel */,
 				6816BA6427B4FD8B0059B497 /* RegisterViewController.swift */,
 				6816BA4D27B4F1960059B497 /* AppDelegate.swift */,
 				6816BA4F27B4F1960059B497 /* SceneDelegate.swift */,
 				6816BA5127B4F1960059B497 /* ViewController.swift */,
 				876F9DA227B6B78300A044ED /* CartViewController.swift */,
 				87D1182D27B5417E00EA7371 /* StandardFunctions.swift */,
+				870E7E1A27BA2CB5001B95A5 /* Initialization.swift */,
 				6816BA5327B4F1960059B497 /* Main.storyboard */,
 				87318A1F27B7D70200B163FC /* CartTableViewCell.swift */,
 				6816BA5927B4F1980059B497 /* Assets.xcassets */,
@@ -162,8 +170,10 @@
 				6816BA6527B4FD8B0059B497 /* RegisterViewController.swift in Sources */,
 				87318A1E27B7D11600B163FC /* ShopViewController.swift in Sources */,
 				87D1182E27B5417E00EA7371 /* StandardFunctions.swift in Sources */,
+				870E7E1B27BA2CB5001B95A5 /* Initialization.swift in Sources */,
 				879D395527B6607600BC4871 /* HomeTabViewController.swift in Sources */,
 				876F9DA327B6B78400A044ED /* CartViewController.swift in Sources */,
+				8752498C27BA405C0059E0CA /* v1migrationmodel.xcmappingmodel in Sources */,
 				6816BA4E27B4F1960059B497 /* AppDelegate.swift in Sources */,
 				87318A2027B7D70200B163FC /* CartTableViewCell.swift in Sources */,
 				6816BA5027B4F1960059B497 /* SceneDelegate.swift in Sources */,
@@ -372,9 +382,11 @@
 		6816BA5627B4F1960059B497 /* NerfGunShop.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				8752498A27BA37F80059E0CA /* NerfGunShop v1.2.xcdatamodel */,
+				870E7E1C27BA31E6001B95A5 /* NerfGunShop v1.1.xcdatamodel */,
 				6816BA5727B4F1960059B497 /* NerfGunShop.xcdatamodel */,
 			);
-			currentVersion = 6816BA5727B4F1960059B497 /* NerfGunShop.xcdatamodel */;
+			currentVersion = 8752498A27BA37F80059E0CA /* NerfGunShop v1.2.xcdatamodel */;
 			path = NerfGunShop.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

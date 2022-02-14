@@ -24,6 +24,7 @@ class CartViewController: UIViewController {
     }
     
     @IBAction func checkoutBtn(_ sender: Any) {
+        self.present(createSimpleAlert(title: "Checkout press", message: "Placeholder"), animated: true, completion: nil)
     }
     
     /*
