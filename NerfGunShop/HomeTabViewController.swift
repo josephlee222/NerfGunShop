@@ -8,17 +8,41 @@
 import UIKit
 
 class ShopSearchViewController:UITableViewController {
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("Init")
     }
     
-    func updateSearchResultsTable(products:[Product]) {
-        
+    var productResults:[Product] = []
+    var idArray = [Int16]()
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        idArray.removeAll()
+        return productResults.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tableCell = tableView.dequeueReusableCell(withIdentifier: "searchItem", for: indexPath)
+        tableCell.textLabel?.text = productResults[indexPath.row].name
+        idArray.append(productResults[indexPath.row].id)
+        return tableCell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Clicked \(idArray)")
     }
 }
 
-class HomeTabViewController: UITabBarController,UISearchResultsUpdating {
+class HomeTabViewController: UITabBarController, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let vc = searchController.searchResultsController as! ShopSearchViewController
+        vc.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "searchItem")
+        vc.productResults = searchProducts(name: searchController.searchBar.text!)
+        vc.tableView.reloadData()
+    }
+    
 
     let shopSearchController = UISearchController(searchResultsController: ShopSearchViewController())
     override func viewDidLoad() {
@@ -27,6 +51,7 @@ class HomeTabViewController: UITabBarController,UISearchResultsUpdating {
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.prefersLargeTitles = true
         shopSearchController.searchBar.placeholder = "Search the store..."
+        shopSearchController.searchResultsUpdater = self
         navigationItem.searchController = shopSearchController
     }
     
@@ -56,10 +81,6 @@ class HomeTabViewController: UITabBarController,UISearchResultsUpdating {
     @IBAction func cartBtn(_ sender: Any) {
         //self.present(createSimpleAlert(title: "Cart press", message: "Placeholder"), animated: true, completion: nil)
         performSegue(withIdentifier: "toCart", sender: nil)
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        
     }
     
     @IBAction func unwindToHome(segue:UIStoryboardSegue) {

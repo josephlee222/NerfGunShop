@@ -137,3 +137,17 @@ func getProducts() -> [Product] {
     }
     return products ?? []
 }
+
+func searchProducts(name:String) -> [Product] {
+    let productRequest:NSFetchRequest = Product.fetchRequest()
+    productRequest.predicate = NSPredicate(format: "name contains[c] '\(name)'")
+    var products:[Product]?
+    do {
+        products = try viewContext.fetch(productRequest)
+        
+    } catch {
+        print(error)
+    }
+    
+    return products ?? []
+}
