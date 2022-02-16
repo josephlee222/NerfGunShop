@@ -7,15 +7,40 @@
 
 import UIKit
 
-class CartViewController: UIViewController {
+class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cart.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:CartTableViewCell = cartTableView.dequeueReusableCell(withIdentifier: "cartItem", for: indexPath) as! CartTableViewCell
+        cell.productName.text = cart[indexPath.row].productName
+        cell.productImg.image = UIImage(named: cart[indexPath.row].image ?? "")
+        cell.productQty.text = "Qty: \(cart[indexPath.row].qty)"
+        cell.productPrice.text = "$\(cart[indexPath.row].price)"
+        
+        return cell
+    }
+    
     
     @IBOutlet var deliveryPriceLbl: UILabel!
     @IBOutlet var totalPriceLbl: UILabel!
+    @IBOutlet var cartTableView: UITableView!
     
+    var cart = getCart(userId: getUserId())
+    var totalPrice:Float = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(cart)
+        cartTableView.dataSource = self
+        cartTableView.delegate = self
+        
+        for item in cart {
+            totalPrice += Float(item.price)
+            totalPriceLbl.text = "$\(totalPrice)"
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -24,8 +49,24 @@ class CartViewController: UIViewController {
     }
     
     @IBAction func checkoutBtn(_ sender: Any) {
-        self.present(createSimpleAlert(title: "Checkout press", message: "Placeholder"), animated: true, completion: nil)
+        if !cart.isEmpty {
+            
+        } else {
+            self.present(createSimpleAlert(title: "Cart Empty", message: "Add some items into your cart before checking out"), animated: true, completion: nil)
+        }
     }
+    
+    @IBAction func clearAllBtn(_ sender: Any) {
+        let alert = UIAlertController(title: "Delete Cart?", message: "Delete all items in the shopping cart?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete All", style: .destructive, handler: {action in
+            deleteCart(userId: getUserId())
+            self.cart = getCart(userId: getUserId())
+            self.cartTableView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert,animated: true,completion: nil)
+    }
+    
     
     /*
     // MARK: - Navigation

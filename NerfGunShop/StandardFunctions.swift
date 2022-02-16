@@ -5,7 +5,6 @@
 //  Created by Joseph Lee on 10/2/22.
 //
 
-import Foundation
 import UIKit
 import CoreData
 
@@ -48,6 +47,10 @@ func isUserLoggedIn() -> Bool {
     let password = UserDefaults.standard.string(forKey: "userLoginPassword")
     
     return username != nil && password != nil
+}
+
+func getUserId() -> Int16 {
+    return Int16(UserDefaults.standard.integer(forKey: "userLoginId"))
 }
 
 // Function to check if the logged in user is an adnin
@@ -111,7 +114,7 @@ func insertProduct(name:String, description:String, price:Float, categoryId:Int1
 }
 
 // Function to insert a product to a users cart
-func insertCart(userId:Int16, itemId:Int16, qty:Int16) {
+func insertCart(userId:Int16, itemId:Int16, name:String, price:Int16, qty:Int16, image:String) {
     if !checkUserDefaultsKeyExist(key: "cartIdCount") {
         UserDefaults.standard.setValue(0, forKey: "cartIdCount")
     }
@@ -120,9 +123,44 @@ func insertCart(userId:Int16, itemId:Int16, qty:Int16) {
     let insert = NSEntityDescription.insertNewObject(forEntityName: "Cart", into: viewContext) as! Cart
     insert.itemId = itemId
     insert.userId = userId
+    insert.productName = name
+    insert.price = price * qty
+    insert.qty = qty
+    insert.image = image
     insert.id = id
     app.saveContext()
     UserDefaults.standard.set(id, forKey: "cartIdCount")
+}
+
+func getCart(userId:Int16) -> [Cart] {
+    let cartRequest:NSFetchRequest = Cart.fetchRequest()
+    cartRequest.predicate = NSPredicate(format: "userId == '\(userId)'")
+    
+    var cart:[Cart]?
+    do {
+        cart = try viewContext.fetch(cartRequest)
+    } catch {
+        print(error)
+    }
+    
+    return cart ?? []
+}
+
+func deleteCart(userId:Int16) {
+    let cartRequest:NSFetchRequest = Cart.fetchRequest()
+    cartRequest.predicate = NSPredicate(format: "userId == '\(userId)'")
+    
+    var cart:[Cart]?
+    do {
+        cart = try viewContext.fetch(cartRequest)
+        
+        for item in cart! {
+            viewContext.delete(item)
+            app.saveContext()
+        }
+    } catch {
+        print(error)
+    }
 }
 
 // Function to get all products
@@ -138,6 +176,23 @@ func getProducts() -> [Product] {
     return products ?? []
 }
 
+// Function to get product by ID, result might be nil.
+func getProduct(id:Int16) -> Product? {
+    let productRequest:NSFetchRequest = Product.fetchRequest()
+    productRequest.predicate = NSPredicate(format: "id = '\(id)'")
+    
+    var product:Product?
+    do {
+        let products = try viewContext.fetch(productRequest)
+        if products.count != 0 {
+            product = products[0]
+        }
+    } catch {
+        print(error)
+    }
+    return product
+}
+
 func searchProducts(name:String) -> [Product] {
     let productRequest:NSFetchRequest = Product.fetchRequest()
     productRequest.predicate = NSPredicate(format: "name contains[c] '\(name)'")
@@ -150,4 +205,30 @@ func searchProducts(name:String) -> [Product] {
     }
     
     return products ?? []
+}
+
+func getProductsByCategory(categoryId:Int16) -> [Product] {
+    let productRequest:NSFetchRequest = Product.fetchRequest()
+    productRequest.predicate = NSPredicate(format: "CategoryId == '\(categoryId)'")
+    var products:[Product]?
+    do {
+        products = try viewContext.fetch(productRequest)
+        
+    } catch {
+        print(error)
+    }
+    
+    return products ?? []
+}
+
+func getCategories() -> [Category] {
+    let productRequest:NSFetchRequest = Category.fetchRequest()
+    
+    var categories:[Category]?
+    do {
+        categories = try viewContext.fetch(productRequest)
+    } catch {
+        print(error)
+    }
+    return categories ?? []
 }

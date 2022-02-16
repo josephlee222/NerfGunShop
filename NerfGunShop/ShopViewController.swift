@@ -15,18 +15,18 @@ class ShopViewController: UIViewController {
     @IBOutlet var carouselPageControl: UIPageControl!
     @IBOutlet var carouselImg: UIImageView!
     
-
+    var randomProductId:Int16?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         //Init the random item, returns ID in case user clicks the product
-        let randomProductId = initRandomProduct()
+        randomProductId = initRandomProduct()
     }
     
     // Function to init the random item view
-    func initRandomProduct() -> Int {
+    func initRandomProduct() -> Int16 {
         let products = getProducts()
         let maximumLength = products.count
         let randomNumber = maximumLength < 2 ? 0 : Int.random(in: 0...maximumLength - 1)
@@ -41,12 +41,17 @@ class ShopViewController: UIViewController {
             randomProductName.text = "No Products"
             randomProductDesc.text = "No products to randomise"
         }
-        return randomNumber
+        return Int16(randomNumber + 1)
     }
     
     @IBAction func tappedRandomItem(_ sender: Any) {
-        self.present(createSimpleAlert(title: "Random Product Press", message: "Placeholder"), animated: true, completion: nil)
+        performSegue(withIdentifier: "homeToProduct", sender: nil)
     }
+    
+    @IBAction func tappedCategories(_ sender: Any) {
+        performSegue(withIdentifier: "homeToCategories", sender: nil)
+    }
+    
     
     @IBAction func swipeCarouselImg(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .left {
@@ -72,9 +77,10 @@ class ShopViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toProduct" {
+        if segue.identifier == "homeToProduct" {
             //For when random product is clicked and need to send product ID to the product view
-            
+            let destVC = segue.destination as! ProductViewController
+            destVC.productId = randomProductId
         }
     }
 

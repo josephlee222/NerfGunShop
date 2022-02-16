@@ -13,11 +13,11 @@ import UIKit
 func initializeData() {
     
     //Insert Categories
-    insertCategory(name: "Testing Category 1", description: "This is testing category 1", imageName: "questionmark.diamond.fill")
+    insertCategory(name: "Testing Category 1", description: "This is testing category 1", imageName: "outline_question_mark_black_48pt")
     
     //Insert products
-    insertProduct(name: "Testing product 1", description: "This is testing product 1 inside the testing category", price: 100, categoryId: 1, imageName: "questionmark.diamond.fill")
-    insertProduct(name: "Testing product 2", description: "This is testing product 2 inside the testing category", price: 100, categoryId: 1, imageName: "questionmark.diamond.fill")
-    insertProduct(name: "Testing product 3", description: "This is testing product 3 inside the testing category", price: 100, categoryId: 1, imageName: "questionmark.diamond.fill")
+    insertProduct(name: "Testing product 1", description: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.", price: 100, categoryId: 1, imageName: "outline_question_mark_black_48pt")
+    insertProduct(name: "Testing product 2", description: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.", price: 100, categoryId: 1, imageName: "outline_question_mark_black_48pt")
+    insertProduct(name: "Testing product 3", description: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.", price: 100, categoryId: 1, imageName: "outline_question_mark_black_48pt")
 
 }

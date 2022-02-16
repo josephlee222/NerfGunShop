@@ -17,6 +17,7 @@ class ShopSearchViewController:UITableViewController {
     
     var productResults:[Product] = []
     var idArray = [Int16]()
+    var selectedId:Int16?
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         idArray.removeAll()
@@ -32,10 +33,26 @@ class ShopSearchViewController:UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Clicked \(idArray)")
+        selectedId = idArray[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "productDetail") as! ProductViewController
+        vc.productId = selectedId
+        self.present(vc, animated: true, completion: nil)
+        //performSegue(withIdentifier: "searchToProduct", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "searchToProduct" {
+            //For when product is clicked and need to send product ID to the product view
+            let destVC = segue.destination as! ProductViewController
+            destVC.productId = selectedId
+        }
     }
 }
 
 class HomeTabViewController: UITabBarController, UISearchResultsUpdating {
+
     func updateSearchResults(for searchController: UISearchController) {
         let vc = searchController.searchResultsController as! ShopSearchViewController
         vc.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "searchItem")
