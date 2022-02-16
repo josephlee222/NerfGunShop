@@ -52,6 +52,14 @@ class ShopViewController: UIViewController {
         performSegue(withIdentifier: "homeToCategories", sender: nil)
     }
     
+    @IBAction func tappedNerfGuns(_ sender: Any) {
+        performSegue(withIdentifier: "homeToCategoryGuns", sender: nil)
+    }
+    
+    @IBAction func tappedDarts(_ sender: Any) {
+        performSegue(withIdentifier: "homeToCategoryDarts", sender: nil)
+    }
+    
     
     @IBAction func swipeCarouselImg(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .left {
@@ -81,6 +89,16 @@ class ShopViewController: UIViewController {
             //For when random product is clicked and need to send product ID to the product view
             let destVC = segue.destination as! ProductViewController
             destVC.productId = randomProductId
+        }
+        
+        if segue.identifier == "homeToCategoryGuns" {
+            let destVC = segue.destination as! CategoryViewController
+            destVC.categoryId = 1
+        }
+        
+        if segue.identifier == "homeToCategoryDarts" {
+            let destVC = segue.destination as! CategoryViewController
+            destVC.categoryId = 2
         }
     }
 

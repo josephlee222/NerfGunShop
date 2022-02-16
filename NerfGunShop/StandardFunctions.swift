@@ -207,9 +207,26 @@ func searchProducts(name:String) -> [Product] {
     return products ?? []
 }
 
+// Function to get category by ID, result might be nil.
+func getCategory(id:Int16) -> Category? {
+    let categoryRequest:NSFetchRequest = Category.fetchRequest()
+    categoryRequest.predicate = NSPredicate(format: "id = '\(id)'")
+    
+    var category:Category?
+    do {
+        let categories = try viewContext.fetch(categoryRequest)
+        if categories.count != 0 {
+            category = categories[0]
+        }
+    } catch {
+        print(error)
+    }
+    return category
+}
+
 func getProductsByCategory(categoryId:Int16) -> [Product] {
     let productRequest:NSFetchRequest = Product.fetchRequest()
-    productRequest.predicate = NSPredicate(format: "CategoryId == '\(categoryId)'")
+    productRequest.predicate = NSPredicate(format: "categoryId == '\(categoryId)'")
     var products:[Product]?
     do {
         products = try viewContext.fetch(productRequest)
