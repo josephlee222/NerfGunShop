@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68113A3F27BDE9A900280C5D /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68113A3E27BDE9A900280C5D /* CheckoutViewController.swift */; };
+		68113A4127BDE9B900280C5D /* CheckoutSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68113A4027BDE9B900280C5D /* CheckoutSuccessViewController.swift */; };
+		68113A4327BE1E7800280C5D /* SelectAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68113A4227BE1E7800280C5D /* SelectAddressTableViewController.swift */; };
+		68113A4527BE1E9B00280C5D /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68113A4427BE1E9B00280C5D /* AddAddressViewController.swift */; };
 		6816BA4E27B4F1960059B497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6816BA4D27B4F1960059B497 /* AppDelegate.swift */; };
 		6816BA5027B4F1960059B497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6816BA4F27B4F1960059B497 /* SceneDelegate.swift */; };
 		6816BA5227B4F1960059B497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6816BA5127B4F1960059B497 /* ViewController.swift */; };
@@ -30,6 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		68113A3E27BDE9A900280C5D /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		68113A4027BDE9B900280C5D /* CheckoutSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutSuccessViewController.swift; sourceTree = "<group>"; };
+		68113A4227BE1E7800280C5D /* SelectAddressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressTableViewController.swift; sourceTree = "<group>"; };
+		68113A4427BE1E9B00280C5D /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
 		6816BA4A27B4F1960059B497 /* NerfGunShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NerfGunShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6816BA4D27B4F1960059B497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6816BA4F27B4F1960059B497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +103,10 @@
 				87D1182D27B5417E00EA7371 /* StandardFunctions.swift */,
 				870E7E1A27BA2CB5001B95A5 /* Initialization.swift */,
 				6816BA5327B4F1960059B497 /* Main.storyboard */,
+				68113A4427BE1E9B00280C5D /* AddAddressViewController.swift */,
+				68113A4227BE1E7800280C5D /* SelectAddressTableViewController.swift */,
+				68113A3E27BDE9A900280C5D /* CheckoutViewController.swift */,
+				68113A4027BDE9B900280C5D /* CheckoutSuccessViewController.swift */,
 				87E5754F27BD376F007E152A /* ProductTableViewCell.swift */,
 				87E5754D27BD28EA007E152A /* CategoryViewController.swift */,
 				68BF612227BCD306001DD240 /* CategoriesTableViewController.swift */,
@@ -194,10 +206,14 @@
 				68B5899527BB4B140021A836 /* SearchTableViewCell.swift in Sources */,
 				68BF612327BCD306001DD240 /* CategoriesTableViewController.swift in Sources */,
 				6816BA4E27B4F1960059B497 /* AppDelegate.swift in Sources */,
+				68113A4127BDE9B900280C5D /* CheckoutSuccessViewController.swift in Sources */,
+				68113A4327BE1E7800280C5D /* SelectAddressTableViewController.swift in Sources */,
 				8731AC8427BBC1D300696467 /* ProductViewController.swift in Sources */,
 				87318A2027B7D70200B163FC /* CartTableViewCell.swift in Sources */,
 				6816BA5027B4F1960059B497 /* SceneDelegate.swift in Sources */,
+				68113A3F27BDE9A900280C5D /* CheckoutViewController.swift in Sources */,
 				6816BA5827B4F1960059B497 /* NerfGunShop.xcdatamodeld in Sources */,
+				68113A4527BE1E9B00280C5D /* AddAddressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

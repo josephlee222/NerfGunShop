@@ -53,6 +53,20 @@ func getUserId() -> Int16 {
     return Int16(UserDefaults.standard.integer(forKey: "userLoginId"))
 }
 
+func getLoggedInUser() -> User {
+    let userRequest:NSFetchRequest = User.fetchRequest()
+    userRequest.predicate = NSPredicate(format: "id == '\(getUserId())'")
+    
+    var user:User!
+    do {
+        user = try viewContext.fetch(userRequest)[0]
+    } catch {
+        print(error)
+    }
+    
+    return user
+}
+
 // Function to check if the logged in user is an adnin
 func isLoggedUserAdmin()  -> Bool {
     return UserDefaults.standard.bool(forKey: "userLoginIsAdmin")
@@ -96,7 +110,7 @@ func insertCategory(name:String, description:String, imageName:String) {
 }
 
 // Function to insert a product
-func insertProduct(name:String, description:String, price:Float, categoryId:Int16, imageName:String) {
+func insertProduct(name:String, description:String, price:Int16, categoryId:Int16, imageName:String) {
     if !checkUserDefaultsKeyExist(key: "productIdCount") {
         UserDefaults.standard.setValue(0, forKey: "productIdCount")
     }
@@ -248,4 +262,34 @@ func getCategories() -> [Category] {
         print(error)
     }
     return categories ?? []
+}
+
+func insertAddress(name:String, location:String, isDefault:Bool) {
+    if !checkUserDefaultsKeyExist(key: "addressIdCount") {
+        UserDefaults.standard.setValue(0, forKey: "addressIdCount")
+    }
+    
+    let id = Int16(UserDefaults.standard.integer(forKey: "addressIdCount") + 1)
+    let insert = NSEntityDescription.insertNewObject(forEntityName: "Address", into: viewContext) as! Address
+    
+    insert.name = name
+    insert.location = location
+    insert.isDefault = isDefault
+    insert.userId = getUserId()
+    insert.id = id
+    app.saveContext()
+    UserDefaults.standard.set(id, forKey: "addressIdCount")
+}
+
+func getAddresses() -> [Address] {
+    let addressRequest:NSFetchRequest = Address.fetchRequest()
+    addressRequest.predicate = NSPredicate(format: "userId == '\(getUserId())'")
+    
+    var addresses:[Address]?
+    do {
+        addresses = try viewContext.fetch(addressRequest)
+    } catch {
+        print(error)
+    }
+    return addresses ?? []
 }

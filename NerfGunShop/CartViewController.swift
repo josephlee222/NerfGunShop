@@ -17,7 +17,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.productName.text = cart[indexPath.row].productName
         cell.productImg.image = UIImage(named: cart[indexPath.row].image ?? "")
         cell.productQty.text = "Qty: \(cart[indexPath.row].qty)"
-        cell.productPrice.text = "$\(cart[indexPath.row].price)"
+        cell.productPrice.text = "\(cart[indexPath.row].price) Credits"
         
         return cell
     }
@@ -28,7 +28,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var cartTableView: UITableView!
     
     var cart = getCart(userId: getUserId())
-    var totalPrice:Float = 0
+    var totalPrice:Int16 = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +37,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         cartTableView.delegate = self
         
         for item in cart {
-            totalPrice += Float(item.price)
-            totalPriceLbl.text = "$\(totalPrice)"
+            totalPrice += item.price
+            totalPriceLbl.text = "\(totalPrice) Credits"
         }
         
         // Do any additional setup after loading the view.
@@ -50,7 +50,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func checkoutBtn(_ sender: Any) {
         if !cart.isEmpty {
-            
+            performSegue(withIdentifier: "toCheckout", sender: nil)
         } else {
             self.present(createSimpleAlert(title: "Cart Empty", message: "Add some items into your cart before checking out"), animated: true, completion: nil)
         }
@@ -65,6 +65,13 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert,animated: true,completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCheckout" {
+            let destVC = segue.destination as! CheckoutViewController
+            destVC.totalPrice = totalPrice
+        }
     }
     
     

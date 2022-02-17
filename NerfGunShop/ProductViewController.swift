@@ -29,7 +29,7 @@ class ProductViewController: UIViewController {
             
             productImg.image = UIImage(named: product!.image ?? "")
             productTitle.text = product?.name
-            productPrice.text = "$\(product?.price ?? 0)"
+            productPrice.text = "\(product?.price ?? 0) Credits"
             productDesc.text = product?.about
         } else {
             self.present(createSimpleAlert(title: "Error", message: "No product ID passed in for viewing. (Broken?)"), animated: true, completion: nil)
@@ -41,7 +41,7 @@ class ProductViewController: UIViewController {
         if qtyTf.text != "" && Int(qtyTf.text ?? "") != nil {
             let qty = qtyTf.text!
             let product = getProduct(id: productId!)
-            insertCart(userId: getUserId(), itemId: Int16(productId!), name: product!.name!, price: Int16(product!.price), qty: Int16(qty)!, image: (product?.image)!)
+            insertCart(userId: getUserId(), itemId: Int16(productId!), name: product!.name!, price: product!.price, qty: Int16(qty)!, image: (product?.image)!)
             self.present(createSimpleAlert(title: "Added to Cart", message: "Product has been added to your cart"), animated: true, completion: nil)
         } else {
             self.present(createSimpleAlert(title: "Unable to Add", message: "Please specify a quantity"), animated: true, completion: nil)
