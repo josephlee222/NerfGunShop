@@ -96,7 +96,6 @@ class HomeTabViewController: UITabBarController, UISearchResultsUpdating {
     }
     
     @IBAction func cartBtn(_ sender: Any) {
-        //self.present(createSimpleAlert(title: "Cart press", message: "Placeholder"), animated: true, completion: nil)
         performSegue(withIdentifier: "toCart", sender: nil)
     }
     

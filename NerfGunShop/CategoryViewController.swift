@@ -18,10 +18,10 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
         
         cell.productImg.image = UIImage(named: products[indexPath.row].image ?? "")
         cell.productName.text = products[indexPath.row].name
-        cell.productPrice.text = "$\(products[indexPath.row].price)"
+        cell.productPrice.text = "\(products[indexPath.row].price) Credits"
         cell.productDesc.text = products[indexPath.row].about
-        productsTableViewConstraint.constant = productsTableView.contentSize.height * CGFloat(products.count + 1)
         IdArray.append(products[indexPath.row].id)
+        self.viewWillLayoutSubviews()
         return cell
     }
     
@@ -57,9 +57,20 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
             
             productsTableView.dataSource = self
             productsTableView.delegate = self
+            
+        
         } else {
             self.present(createSimpleAlert(title: "Invaild categoryId", message: "CategoryId is not found"), animated: true, completion: nil)
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.updateViewConstraints()
+        self.productsTableViewConstraint.constant = self.productsTableView.contentSize.height
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        productsTableViewConstraint.constant = productsTableView.contentSize.height
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

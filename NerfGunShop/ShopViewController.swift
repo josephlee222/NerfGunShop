@@ -98,7 +98,7 @@ class ShopViewController: UIViewController {
         
         if segue.identifier == "homeToCategoryDarts" {
             let destVC = segue.destination as! CategoryViewController
-            destVC.categoryId = 2
+            destVC.categoryId = 3
         }
     }
 

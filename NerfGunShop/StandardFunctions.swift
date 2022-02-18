@@ -293,3 +293,17 @@ func getAddresses() -> [Address] {
     }
     return addresses ?? []
 }
+
+func addCredits(amount:Int16) {
+    let user = getLoggedInUser()
+    
+    user.setValue((user.credits + amount), forKey: "credits")
+    app.saveContext()
+}
+
+func deductCredits(amount:Int16) {
+    let user = getLoggedInUser()
+    
+    user.setValue((user.credits - amount), forKey: "credits")
+    app.saveContext()
+}

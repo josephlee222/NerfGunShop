@@ -9,7 +9,7 @@ import UIKit
 
 class SelectAddressTableViewController: UITableViewController {
     
-    let addresses:[Address] = getAddresses()
+    var addresses:[Address] = getAddresses()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +19,6 @@ class SelectAddressTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -73,6 +68,10 @@ class SelectAddressTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToDeliveryList(segue:UIStoryboardSegue) {
+        if segue.identifier == "fromAddAddress" {
+            addresses = getAddresses()
+            tableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

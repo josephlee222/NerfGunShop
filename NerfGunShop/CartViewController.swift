@@ -36,12 +36,15 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         cartTableView.dataSource = self
         cartTableView.delegate = self
         
+        calculateCart()
+    }
+    
+    func calculateCart() {
+        totalPrice = 0
         for item in cart {
             totalPrice += item.price
-            totalPriceLbl.text = "\(totalPrice) Credits"
         }
-        
-        // Do any additional setup after loading the view.
+        totalPriceLbl.text = "\(totalPrice) Credits"
     }
     
     @IBAction func closeBtn(_ sender: Any) {
@@ -61,6 +64,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         alert.addAction(UIAlertAction(title: "Delete All", style: .destructive, handler: {action in
             deleteCart(userId: getUserId())
             self.cart = getCart(userId: getUserId())
+            self.calculateCart()
             self.cartTableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
