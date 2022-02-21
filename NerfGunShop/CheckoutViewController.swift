@@ -52,7 +52,7 @@ class CheckoutViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             discount = Int.random(in: 0...20)
-            totalPrice = (totalPrice / 100) * Int16((100 - discount))
+            totalPrice = Int16((Float(totalPrice) / 100) * (100 - Float(discount)))
             payableLbl.text = "\(totalPrice!) Credits\nAfter \(discount)% Discount"
             updateCreditLbl()
             if discount != 0 {
