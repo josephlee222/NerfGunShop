@@ -67,6 +67,20 @@ func getLoggedInUser() -> User {
     return user
 }
 
+func editLoggedInUserEmail(email:String) {
+    let user:User = getLoggedInUser()
+    user.setValue(email, forKey: "email")
+    
+    app.saveContext()
+}
+
+func editLoggedInUserPassword(password:String) {
+    let user:User = getLoggedInUser()
+    user.setValue(password, forKey: "password")
+    
+    app.saveContext()
+}
+
 // Function to check if the logged in user is an adnin
 func isLoggedUserAdmin()  -> Bool {
     return UserDefaults.standard.bool(forKey: "userLoginIsAdmin")

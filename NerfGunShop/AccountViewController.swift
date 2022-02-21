@@ -28,6 +28,10 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch indexPath.row {
         case 0:
             performSegue(withIdentifier: "toAddCredits", sender: nil)
+        case 1:
+            performSegue(withIdentifier: "modifyPassword", sender: nil)
+        case 2:
+            performSegue(withIdentifier: "modifyEmail", sender: nil)
         default:
             self.present(createSimpleAlert(title: "Error", message: "Unimplemented user option (broken?)"), animated: true, completion: nil)
         }
@@ -39,7 +43,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var emailLbl: UILabel!
     @IBOutlet var userOptions: UITableView!
     
-    let user = getLoggedInUser()
+    var user = getLoggedInUser()
     
 
     override func viewDidLoad() {
@@ -52,6 +56,26 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         userOptions.dataSource = self
         userOptions.delegate = self
     }
+    
+    @IBAction func unwindToAccount(segue:UIStoryboardSegue) {
+        if segue.identifier == "fromEditUser" {
+            user = getLoggedInUser()
+            emailLbl.text = user.email
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "modifyEmail" {
+            let destVC = segue.destination as! EditAccountViewController
+            destVC.editType = "email"
+        }
+        
+        if segue.identifier == "modifyPassword" {
+            let destVC = segue.destination as! EditAccountViewController
+            destVC.editType = "password"
+        }
+    }
+
     
 
     /*
