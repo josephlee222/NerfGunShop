@@ -22,6 +22,31 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    // Delete individual item
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let cancelAction = UIContextualAction(style: .destructive, title: "Delete Item", handler: {action,view,completionHandler in
+            deleteCartItem(cartItem: self.cart[indexPath.row])
+            self.cart = getCart(userId: getUserId())
+            self.cartTableView.reloadData()
+            self.calculateCart()
+        })
+        
+        return UISwipeActionsConfiguration(actions: [cancelAction])
+    }
+    
+    // Edit quanity
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: "Edit", handler: {action,view,completionHandler in
+            
+        })
+        
+        return UISwipeActionsConfiguration(actions: [editAction])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cartTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     
     @IBOutlet var deliveryPriceLbl: UILabel!
     @IBOutlet var totalPriceLbl: UILabel!

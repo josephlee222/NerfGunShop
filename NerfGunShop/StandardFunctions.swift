@@ -191,6 +191,11 @@ func deleteCart(userId:Int16) {
     }
 }
 
+func deleteCartItem(cartItem:Cart) {
+    viewContext.delete(cartItem)
+    app.saveContext()
+}
+
 // Function to get all products
 func getProducts() -> [Product] {
     let productRequest:NSFetchRequest = Product.fetchRequest()
