@@ -28,6 +28,8 @@
 		87318A1E27B7D11600B163FC /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87318A1D27B7D11600B163FC /* ShopViewController.swift */; };
 		87318A2027B7D70200B163FC /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87318A1F27B7D70200B163FC /* CartTableViewCell.swift */; };
 		8731AC8427BBC1D300696467 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731AC8327BBC1D300696467 /* ProductViewController.swift */; };
+		8739D8BA27C5141A00D0D962 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8739D8B827C5141900D0D962 /* LICENSE */; };
+		8739D8BB27C5141A00D0D962 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8739D8B927C5141A00D0D962 /* README.md */; };
 		8752498C27BA405C0059E0CA /* v1migrationmodel.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8752498B27BA405C0059E0CA /* v1migrationmodel.xcmappingmodel */; };
 		876F9DA327B6B78400A044ED /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876F9DA227B6B78300A044ED /* CartViewController.swift */; };
 		879D395527B6607600BC4871 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879D395427B6607600BC4871 /* HomeTabViewController.swift */; };
@@ -62,6 +64,8 @@
 		87318A1D27B7D11600B163FC /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		87318A1F27B7D70200B163FC /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		8731AC8327BBC1D300696467 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		8739D8B827C5141900D0D962 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		8739D8B927C5141A00D0D962 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8752498A27BA37F80059E0CA /* NerfGunShop v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "NerfGunShop v1.2.xcdatamodel"; sourceTree = "<group>"; };
 		8752498B27BA405C0059E0CA /* v1migrationmodel.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = v1migrationmodel.xcmappingmodel; sourceTree = "<group>"; };
 		876F9DA227B6B78300A044ED /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		6816BA4127B4F1960059B497 = {
 			isa = PBXGroup;
 			children = (
+				8739D8B827C5141900D0D962 /* LICENSE */,
+				8739D8B927C5141A00D0D962 /* README.md */,
 				6816BA4C27B4F1960059B497 /* NerfGunShop */,
 				6816BA4B27B4F1960059B497 /* Products */,
 			);
@@ -194,6 +200,8 @@
 			files = (
 				6816BA5D27B4F1980059B497 /* LaunchScreen.storyboard in Resources */,
 				6816BA5A27B4F1980059B497 /* Assets.xcassets in Resources */,
+				8739D8BB27C5141A00D0D962 /* README.md in Resources */,
+				8739D8BA27C5141A00D0D962 /* LICENSE in Resources */,
 				6816BA5527B4F1960059B497 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
