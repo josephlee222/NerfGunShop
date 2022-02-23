@@ -27,7 +27,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cancelAction = UIContextualAction(style: .destructive, title: "Delete Item", handler: {action,view,completionHandler in
             deleteCartItem(cartItem: self.cart[indexPath.row])
             self.cart = getCart(userId: getUserId())
-            self.cartTableView.reloadData()
+            self.cartTableView.deleteRows(at: [indexPath], with: .automatic)
             self.calculateCart()
         })
         

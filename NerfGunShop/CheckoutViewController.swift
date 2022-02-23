@@ -116,7 +116,7 @@ class CheckoutViewController: UIViewController {
                         if model.weather[0].main == "Rain" {
                             weatherDescriptor = "Bad Weather Condition\nNext Day"
                         } else {
-                            weatherDescriptor = "\(model.weather[0].description ?? "Unknown")\nSame Day"
+                            weatherDescriptor = "\((model.weather[0].description)?.capitalized ?? "Unknown")\nSame Day"
                         }
                     }
                     catch let parsingError {

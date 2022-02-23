@@ -72,6 +72,16 @@ class HomeTabViewController: UITabBarController, UISearchResultsUpdating {
         navigationItem.searchController = shopSearchController
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if checkUserDefaultsKeyExist(key: "userTheme") {
+            let window = UIApplication.shared.windows.first
+            let theme = UserDefaults.standard.string(forKey: "userTheme")
+            UIView.transition (with: window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                window!.overrideUserInterfaceStyle = theme == "dark" ? .dark : .light //.light or .unspecified
+            }, completion: nil)
+        }
+    }
+    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         title = item.title
         if item.title == "Shop" {

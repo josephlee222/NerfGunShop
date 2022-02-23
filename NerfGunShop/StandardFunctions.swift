@@ -141,6 +141,27 @@ func insertProduct(name:String, description:String, price:Int16, categoryId:Int1
     UserDefaults.standard.set(id, forKey: "productIdCount")
 }
 
+func reinitialiseProducts() {
+    let Productsbatch = NSBatchDeleteRequest(fetchRequest: Product.fetchRequest())
+    let Categorybatch = NSBatchDeleteRequest(fetchRequest: Category.fetchRequest())
+    do {
+        try app.persistentContainer.persistentStoreCoordinator.execute(Productsbatch, with: viewContext)
+    } catch {
+        print(error)
+    }
+    
+    do {
+        try app.persistentContainer.persistentStoreCoordinator.execute(Categorybatch, with: viewContext)
+    } catch {
+        print(error)
+    }
+    
+    UserDefaults.standard.set(0, forKey: "productIdCount")
+    UserDefaults.standard.set(0, forKey: "categoryIdCount")
+
+    initializeData()
+}
+
 // Function to insert a product to a users cart
 func insertCart(userId:Int16, itemId:Int16, name:String, price:Int16, qty:Int16, image:String) {
     if !checkUserDefaultsKeyExist(key: "cartIdCount") {
