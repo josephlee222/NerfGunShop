@@ -16,7 +16,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell:CartTableViewCell = cartTableView.dequeueReusableCell(withIdentifier: "cartItem", for: indexPath) as! CartTableViewCell
         cell.productName.text = cart[indexPath.row].productName
         cell.productImg.image = UIImage(named: cart[indexPath.row].image ?? "")
-        cell.productQty.text = "Qty: \(cart[indexPath.row].qty)"
+        cell.productQty.text = "Qty - \(cart[indexPath.row].qty)"
         cell.productPrice.text = "\(cart[indexPath.row].price) Credits"
         
         return cell
@@ -37,7 +37,21 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Edit quanity
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: "Edit", handler: {action,view,completionHandler in
-            
+            let alert = UIAlertController(title: "Edit Quantity", message: "Enter a new quantity", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: {(tf) in
+                tf.placeholder = "Enter quantity"
+                tf.text = "\(self.cart[indexPath.row].qty)"
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {action in
+                let tf = Int16(alert.textFields![0].text ?? "1")
+                editCartQuantity(cart: self.cart[indexPath.row], qty: tf ?? self.cart[indexPath.row].qty)
+                
+                self.cart = getCart(userId: getUserId())
+                self.cartTableView.reloadData()
+                self.calculateCart()
+            }))
+            self.present(alert, animated: true, completion: nil)
         })
         
         return UISwipeActionsConfiguration(actions: [editAction])

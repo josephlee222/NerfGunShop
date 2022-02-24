@@ -32,6 +32,8 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             performSegue(withIdentifier: "modifyPassword", sender: nil)
         case 2:
             performSegue(withIdentifier: "modifyEmail", sender: nil)
+        case 3:
+            performSegue(withIdentifier: "toDeleteAccount", sender: nil)
         default:
             self.present(createSimpleAlert(title: "Error", message: "Unimplemented user option (broken?)"), animated: true, completion: nil)
         }

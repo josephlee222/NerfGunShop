@@ -10,7 +10,6 @@ import UIKit
 class CategoriesTableViewController: UITableViewController {
     
     var categories:[Category] = getCategories()
-    var idArray = [Int16]()
     var selectedId:Int16!
 
     override func viewDidLoad() {
@@ -31,7 +30,6 @@ class CategoriesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        idArray = []
         return categories.count
     }
 
@@ -41,13 +39,12 @@ class CategoriesTableViewController: UITableViewController {
         cell.imageView?.image = UIImage(named: categories[indexPath.row].image ?? "outline_question_mark_black_48pt")
         cell.textLabel?.text = categories[indexPath.row].name
         cell.detailTextLabel?.text = categories[indexPath.row].about
-        idArray.append(categories[indexPath.row].id)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedId = idArray[indexPath.row]
+        selectedId = categories[indexPath.row].id
         performSegue(withIdentifier: "categoriesToCategory", sender: nil)
     }
     

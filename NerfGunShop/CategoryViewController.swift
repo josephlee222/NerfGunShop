@@ -9,7 +9,6 @@ import UIKit
 
 class CategoryViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        IdArray = []
         return products.count
     }
     
@@ -20,14 +19,13 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
         cell.productName.text = products[indexPath.row].name
         cell.productPrice.text = "\(products[indexPath.row].price) Credits"
         cell.productDesc.text = products[indexPath.row].about
-        IdArray.append(products[indexPath.row].id)
         self.viewWillLayoutSubviews()
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         productsTableView.deselectRow(at: indexPath, animated: true)
-        selectedId = IdArray[indexPath.row]
+        selectedId = products[indexPath.row].id
         performSegue(withIdentifier: "categoryToProduct", sender: nil)
     }
     
@@ -40,7 +38,6 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
     
     var categoryId:Int16!
     var products:[Product]!
-    var IdArray:[Int16]!
     var selectedId:Int16!
     var category:Category!
     

@@ -18,7 +18,7 @@ class AboutViewController: UIViewController,AVAudioPlayerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ackLbl.text = "The NERF brand and its terms belongs to Hasbro\nThe X-Shot brand and its terms belongs to Zuru .Inc\n\nProduct images taken from Toy'R'Us\n\nApp icon generated with AndroidAssetStudio\nhttps://romannurik.github.io/AndroidAssetStudio/"
+        ackLbl.text = "The NERF brand and its terms belongs to Hasbro\nThe X-Shot brand and its terms belongs to Zuru .Inc\n\nProduct images taken from Toy'R'Us\n\nWeather infomation retrieved from OpenWeather\nhttps://openweathermap.org/\n\nApp icon generated with AndroidAssetStudio\nhttps://romannurik.github.io/AndroidAssetStudio/"
         // Do any additional setup after loading the view.
     }
     

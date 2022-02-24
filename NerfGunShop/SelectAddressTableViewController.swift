@@ -53,6 +53,24 @@ class SelectAddressTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Delete", handler: {action, view, completion in
+            deleteAddress(address: self.addresses[indexPath.row])
+            self.addresses = getAddresses()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        })
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Edit", handler: {action, view, completion in
+            self.performSegue(withIdentifier: "toEditAddress", sender: indexPath)
+        })
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if !addresses.isEmpty {
@@ -79,6 +97,14 @@ class SelectAddressTableViewController: UITableViewController {
             let destVC = segue.destination as! CheckoutViewController
             let cell = sender as! UITableViewCell
             destVC.address = cell.detailTextLabel?.text
+        }
+        
+        if segue.identifier == "toEditAddress" {
+            let destVC = segue.destination as! AddAddressViewController
+            let indexPath = sender as! IndexPath
+            
+            destVC.isEditingAddress = true
+            destVC.address = addresses[indexPath.row]
         }
     }
 

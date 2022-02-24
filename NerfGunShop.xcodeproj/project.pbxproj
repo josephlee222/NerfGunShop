@@ -21,6 +21,7 @@
 		6816BA6527B4FD8B0059B497 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6816BA6427B4FD8B0059B497 /* RegisterViewController.swift */; };
 		684D0E3F27C5C265008FAE36 /* OptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684D0E3E27C5C265008FAE36 /* OptionsTableViewController.swift */; };
 		684D0E4127C61ECE008FAE36 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684D0E4027C61ECE008FAE36 /* AboutViewController.swift */; };
+		68B1653427C779E200500937 /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1653327C779E200500937 /* DeleteAccountViewController.swift */; };
 		68B5899527BB4B140021A836 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5899427BB4B140021A836 /* SearchTableViewCell.swift */; };
 		68B8626B27C486BE00F9CA89 /* weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B8626A27C486BE00F9CA89 /* weather.swift */; };
 		68BF612327BCD306001DD240 /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BF612227BCD306001DD240 /* CategoriesTableViewController.swift */; };
@@ -58,6 +59,7 @@
 		6816BA6427B4FD8B0059B497 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		684D0E3E27C5C265008FAE36 /* OptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewController.swift; sourceTree = "<group>"; };
 		684D0E4027C61ECE008FAE36 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		68B1653327C779E200500937 /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
 		68B5899427BB4B140021A836 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		68B8626A27C486BE00F9CA89 /* weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weather.swift; sourceTree = "<group>"; };
 		68BF612227BCD306001DD240 /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				684D0E3E27C5C265008FAE36 /* OptionsTableViewController.swift */,
 				87FFFD2C27C2114300BA4C26 /* EditAccountViewController.swift */,
 				68CCF5E227BF434200259961 /* AccountViewController.swift */,
+				68B1653327C779E200500937 /* DeleteAccountViewController.swift */,
 				68CCF5E027BF2FBD00259961 /* AddCreditsViewController.swift */,
 				68113A4427BE1E9B00280C5D /* AddAddressViewController.swift */,
 				68113A4227BE1E7800280C5D /* SelectAddressTableViewController.swift */,
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6816BA5227B4F1960059B497 /* ViewController.swift in Sources */,
+				68B1653427C779E200500937 /* DeleteAccountViewController.swift in Sources */,
 				6816BA6527B4FD8B0059B497 /* RegisterViewController.swift in Sources */,
 				87318A1E27B7D11600B163FC /* ShopViewController.swift in Sources */,
 				87D1182E27B5417E00EA7371 /* StandardFunctions.swift in Sources */,

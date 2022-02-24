@@ -10,10 +10,11 @@ import CoreData
 
 let app = UIApplication.shared.delegate as! AppDelegate
 var viewContext:NSManagedObjectContext = app.persistentContainer.viewContext
+let defaults = UserDefaults.standard
 
 // Function to check if a userdefaults key exist
 func checkUserDefaultsKeyExist(key:String) -> Bool {
-    return UserDefaults.standard.object(forKey: key) != nil
+    return defaults.object(forKey: key) != nil
 }
 
 // Function to create a simple dialog and return a UIALertController
@@ -33,24 +34,24 @@ func createLoginUserDefaults(user:User) {
     let id = user.id
     
     //Set the userDefaults
-    UserDefaults.standard.set(username, forKey: "userLoginUsername")
-    UserDefaults.standard.set(password, forKey: "userLoginPassword")
-    UserDefaults.standard.set(email, forKey: "userLoginEmail")
-    UserDefaults.standard.set(credits, forKey: "userLoginCredits")
-    UserDefaults.standard.set(isAdmin, forKey: "userLoginIsAdmin")
-    UserDefaults.standard.set(id, forKey: "userLoginId")
+    defaults.set(username, forKey: "userLoginUsername")
+    defaults.set(password, forKey: "userLoginPassword")
+    defaults.set(email, forKey: "userLoginEmail")
+    defaults.set(credits, forKey: "userLoginCredits")
+    defaults.set(isAdmin, forKey: "userLoginIsAdmin")
+    defaults.set(id, forKey: "userLoginId")
 }
 
 // Function to check if an existing user is logged in
 func isUserLoggedIn() -> Bool {
-    let username = UserDefaults.standard.string(forKey: "userLoginUsername")
-    let password = UserDefaults.standard.string(forKey: "userLoginPassword")
+    let username = defaults.string(forKey: "userLoginUsername")
+    let password = defaults.string(forKey: "userLoginPassword")
     
     return username != nil && password != nil
 }
 
 func getUserId() -> Int16 {
-    return Int16(UserDefaults.standard.integer(forKey: "userLoginId"))
+    return Int16(defaults.integer(forKey: "userLoginId"))
 }
 
 func getLoggedInUser() -> User {
@@ -83,53 +84,51 @@ func editLoggedInUserPassword(password:String) {
 
 // Function to check if the logged in user is an adnin
 func isLoggedUserAdmin()  -> Bool {
-    return UserDefaults.standard.bool(forKey: "userLoginIsAdmin")
+    return defaults.bool(forKey: "userLoginIsAdmin")
 }
 
 // Function to log out the user
 func logoutUser() {
-    UserDefaults.standard.removeObject(forKey: "userLoginUsername")
-    UserDefaults.standard.removeObject(forKey: "userLoginPassword")
-    UserDefaults.standard.removeObject(forKey: "userLoginEmail")
-    UserDefaults.standard.removeObject(forKey: "userLoginCredits")
-    UserDefaults.standard.removeObject(forKey: "userLoginIsAdmin")
-    UserDefaults.standard.removeObject(forKey: "userLoginId")
+    defaults.removeObject(forKey: "userLoginUsername")
+    defaults.removeObject(forKey: "userLoginPassword")
+    defaults.removeObject(forKey: "userLoginEmail")
+    defaults.removeObject(forKey: "userLoginCredits")
+    defaults.removeObject(forKey: "userLoginIsAdmin")
+    defaults.removeObject(forKey: "userLoginId")
 }
 
-
-// Debug function to print all logged in userDefaults (To be deleted later)
-func debugPrintLoginUserDefaults() {
-    print(UserDefaults.standard.string(forKey: "userLoginUsername")!)
-    print(UserDefaults.standard.string(forKey: "userLoginPassword")!)
-    print(UserDefaults.standard.string(forKey: "userLoginEmail")!)
-    print(UserDefaults.standard.string(forKey: "userLoginCredits")!)
-    print(UserDefaults.standard.string(forKey: "userLoginIsAdmin")!)
-    print(UserDefaults.standard.string(forKey: "userLoginId")!)
+func deleteUser() {
+    let user = getLoggedInUser()
+    deleteCart(userId: user.id)
+    deleteAllAddresses(userId: user.id)
+    logoutUser()
+    viewContext.delete(user)
+    app.saveContext()
 }
 
 // Function to insert a product category
 func insertCategory(name:String, description:String, imageName:String) {
     if !checkUserDefaultsKeyExist(key: "categoryIdCount") {
-        UserDefaults.standard.setValue(0, forKey: "categoryIdCount")
+        defaults.setValue(0, forKey: "categoryIdCount")
     }
     
-    let id = Int16(UserDefaults.standard.integer(forKey: "categoryIdCount") + 1)
+    let id = Int16(defaults.integer(forKey: "categoryIdCount") + 1)
     let insert = NSEntityDescription.insertNewObject(forEntityName: "Category", into: viewContext) as! Category
     insert.name = name
     insert.about = description
     insert.image = imageName
     insert.id = id
     app.saveContext()
-    UserDefaults.standard.set(id, forKey: "categoryIdCount")
+    defaults.set(id, forKey: "categoryIdCount")
 }
 
 // Function to insert a product
 func insertProduct(name:String, description:String, price:Int16, categoryId:Int16, imageName:String) {
     if !checkUserDefaultsKeyExist(key: "productIdCount") {
-        UserDefaults.standard.setValue(0, forKey: "productIdCount")
+        defaults.setValue(0, forKey: "productIdCount")
     }
     
-    let id = Int16(UserDefaults.standard.integer(forKey: "productIdCount") + 1)
+    let id = Int16(defaults.integer(forKey: "productIdCount") + 1)
     let insert = NSEntityDescription.insertNewObject(forEntityName: "Product", into: viewContext) as! Product
     insert.name = name
     insert.about = description
@@ -138,7 +137,7 @@ func insertProduct(name:String, description:String, price:Int16, categoryId:Int1
     insert.price = price
     insert.id = id
     app.saveContext()
-    UserDefaults.standard.set(id, forKey: "productIdCount")
+    defaults.set(id, forKey: "productIdCount")
 }
 
 func reinitialiseProducts() {
@@ -156,8 +155,8 @@ func reinitialiseProducts() {
         print(error)
     }
     
-    UserDefaults.standard.set(0, forKey: "productIdCount")
-    UserDefaults.standard.set(0, forKey: "categoryIdCount")
+    defaults.set(0, forKey: "productIdCount")
+    defaults.set(0, forKey: "categoryIdCount")
 
     initializeData()
 }
@@ -165,10 +164,10 @@ func reinitialiseProducts() {
 // Function to insert a product to a users cart
 func insertCart(userId:Int16, itemId:Int16, name:String, price:Int16, qty:Int16, image:String) {
     if !checkUserDefaultsKeyExist(key: "cartIdCount") {
-        UserDefaults.standard.setValue(0, forKey: "cartIdCount")
+        defaults.setValue(0, forKey: "cartIdCount")
     }
     
-    let id = Int16(UserDefaults.standard.integer(forKey: "cartIdCount") + 1)
+    let id = Int16(defaults.integer(forKey: "cartIdCount") + 1)
     let insert = NSEntityDescription.insertNewObject(forEntityName: "Cart", into: viewContext) as! Cart
     insert.itemId = itemId
     insert.userId = userId
@@ -178,7 +177,7 @@ func insertCart(userId:Int16, itemId:Int16, name:String, price:Int16, qty:Int16,
     insert.image = image
     insert.id = id
     app.saveContext()
-    UserDefaults.standard.set(id, forKey: "cartIdCount")
+    defaults.set(id, forKey: "cartIdCount")
 }
 
 func getCart(userId:Int16) -> [Cart] {
@@ -193,6 +192,34 @@ func getCart(userId:Int16) -> [Cart] {
     }
     
     return cart ?? []
+}
+
+func isCartItemExist(productId:Int16, userId:Int16) -> Bool {
+    let cartRequest:NSFetchRequest = Cart.fetchRequest()
+    cartRequest.predicate = NSPredicate(format: "userId == '\(userId)' && itemId == '\(productId)'")
+    
+    var cart:[Cart]?
+    do {
+        cart = try viewContext.fetch(cartRequest)
+    } catch {
+        print(error)
+    }
+    
+    return !(cart?.isEmpty ?? false)
+}
+
+func getCartItem(productId:Int16, userId:Int16) -> Cart {
+    let cartRequest:NSFetchRequest = Cart.fetchRequest()
+    cartRequest.predicate = NSPredicate(format: "userId == '\(userId)' && itemId == '\(productId)'")
+    
+    var cart:[Cart]?
+    do {
+        cart = try viewContext.fetch(cartRequest)
+    } catch {
+        print(error)
+    }
+    
+    return cart![0]
 }
 
 func deleteCart(userId:Int16) {
@@ -214,6 +241,14 @@ func deleteCart(userId:Int16) {
 
 func deleteCartItem(cartItem:Cart) {
     viewContext.delete(cartItem)
+    app.saveContext()
+}
+
+func editCartQuantity(cart:Cart, qty:Int16) {
+    let product = getProduct(id: cart.itemId)
+    cart.setValue(qty, forKey: "qty")
+    cart.setValue(product!.price * qty, forKey: "price")
+    
     app.saveContext()
 }
 
@@ -306,10 +341,10 @@ func getCategories() -> [Category] {
 
 func insertAddress(name:String, location:String, isDefault:Bool) {
     if !checkUserDefaultsKeyExist(key: "addressIdCount") {
-        UserDefaults.standard.setValue(0, forKey: "addressIdCount")
+        defaults.setValue(0, forKey: "addressIdCount")
     }
     
-    let id = Int16(UserDefaults.standard.integer(forKey: "addressIdCount") + 1)
+    let id = Int16(defaults.integer(forKey: "addressIdCount") + 1)
     let insert = NSEntityDescription.insertNewObject(forEntityName: "Address", into: viewContext) as! Address
     
     insert.name = name
@@ -318,7 +353,7 @@ func insertAddress(name:String, location:String, isDefault:Bool) {
     insert.userId = getUserId()
     insert.id = id
     app.saveContext()
-    UserDefaults.standard.set(id, forKey: "addressIdCount")
+    defaults.set(id, forKey: "addressIdCount")
 }
 
 func getAddresses() -> [Address] {
@@ -332,6 +367,48 @@ func getAddresses() -> [Address] {
         print(error)
     }
     return addresses ?? []
+}
+
+func getAddress(id:Int16) -> Address {
+    let addressRequest:NSFetchRequest = Address.fetchRequest()
+    addressRequest.predicate = NSPredicate(format: "id == '\(id)'")
+    
+    var addresses:[Address]?
+    do {
+        addresses = try viewContext.fetch(addressRequest)
+    } catch {
+        print(error)
+    }
+    
+    return addresses![0]
+}
+
+func editAddress(address:Address, name:String, location:String) {
+    address.setValue(name, forKey: "name")
+    address.setValue(location, forKey: "location")
+    app.saveContext()
+}
+
+func deleteAddress(address:Address) {
+    viewContext.delete(address)
+    app.saveContext()
+}
+
+func deleteAllAddresses(userId:Int16) {
+    let addressRequest:NSFetchRequest = Address.fetchRequest()
+    addressRequest.predicate = NSPredicate(format: "userId == '\(userId)'")
+    
+    var addresses:[Address]?
+    do {
+        addresses = try viewContext.fetch(addressRequest)
+        
+        for item in addresses! {
+            viewContext.delete(item)
+            app.saveContext()
+        }
+    } catch {
+        print(error)
+    }
 }
 
 func addCredits(amount:Int16) {

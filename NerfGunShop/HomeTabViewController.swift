@@ -16,24 +16,20 @@ class ShopSearchViewController:UITableViewController {
     }
     
     var productResults:[Product] = []
-    var idArray = [Int16]()
     var selectedId:Int16?
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        idArray.removeAll()
         return productResults.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = tableView.dequeueReusableCell(withIdentifier: "searchItem", for: indexPath)
         tableCell.textLabel?.text = productResults[indexPath.row].name
-        idArray.append(productResults[indexPath.row].id)
         return tableCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Clicked \(idArray)")
-        selectedId = idArray[indexPath.row]
+        selectedId = productResults[indexPath.row].id
         tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "productDetail") as! ProductViewController
@@ -70,16 +66,6 @@ class HomeTabViewController: UITabBarController, UISearchResultsUpdating {
         shopSearchController.searchBar.placeholder = "Search the store..."
         shopSearchController.searchResultsUpdater = self
         navigationItem.searchController = shopSearchController
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        if checkUserDefaultsKeyExist(key: "userTheme") {
-            let window = UIApplication.shared.windows.first
-            let theme = UserDefaults.standard.string(forKey: "userTheme")
-            UIView.transition (with: window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
-                window!.overrideUserInterfaceStyle = theme == "dark" ? .dark : .light //.light or .unspecified
-            }, completion: nil)
-        }
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

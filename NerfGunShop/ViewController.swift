@@ -11,6 +11,7 @@ import CoreData
 class ViewController: UIViewController {
     
     let app = UIApplication.shared.delegate as! AppDelegate
+    let window = UIApplication.shared.windows.first
     var viewContext:NSManagedObjectContext!
     
     //Components output
@@ -21,6 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesBackButton = true
         
         //Checking if ID counters exists
         if !checkUserDefaultsKeyExist(key: "userIdCount") {
@@ -30,8 +32,17 @@ class ViewController: UIViewController {
         
         //Init the viewcontext
         viewContext = app.persistentContainer.viewContext
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if checkUserDefaultsKeyExist(key: "userTheme") {
+            let window = UIApplication.shared.windows.first
+            let theme = UserDefaults.standard.string(forKey: "userTheme")
+            UIView.transition (with: window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                window!.overrideUserInterfaceStyle = theme == "dark" ? .dark : .light //.light or .unspecified
+            }, completion: nil)
+        }
         
-        // Do any additional setup after loading the view.
         if (isUserLoggedIn()) {
             performSegue(withIdentifier: "toHomeNavigation", sender: nil)
         }
@@ -58,7 +69,6 @@ class ViewController: UIViewController {
                 if !users.isEmpty {
                     //Correct password, login the user and set userDefaults
                     createLoginUserDefaults(user:users[0])
-                    debugPrintLoginUserDefaults()
                     performSegue(withIdentifier: "toHomeNavigation", sender: nil)
                 } else {
                     //Wrong password, throw alert to user to retry
@@ -72,10 +82,6 @@ class ViewController: UIViewController {
             //Throw error about incomplete fields
             self.present(createSimpleAlert(title: "Unable to login", message: "Please make sure to fill up all the fields"), animated: true, completion: nil)
         }
-        
-        
-        
-        
     }
     
     @IBAction func unwindToWelcome(segue: UIStoryboardSegue) {
