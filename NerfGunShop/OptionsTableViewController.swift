@@ -72,6 +72,7 @@ class OptionsTableViewController: UITableViewController {
                 }, completion: nil)
                 UserDefaults.standard.removeObject(forKey: "userTheme")
             }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         case 1:
             let alert = UIAlertController(title: "Refresh Product Data?", message: "Refresh Product Data? Useful when new products are added.", preferredStyle: .alert)
