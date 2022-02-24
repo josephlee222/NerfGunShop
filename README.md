@@ -13,4 +13,6 @@ Documentation file coming soon
 <img src="https://user-images.githubusercontent.com/38001452/155103856-b65563ec-ed16-4aee-9f58-ec1f08bc912e.png" alt="Simulator Screen Shot - iPhone 8 - 2022-02-22 at 17 30 52" width="200px">
 <img src="https://user-images.githubusercontent.com/38001452/155103861-dfdb4284-c390-42c8-8e47-f05612b55458.png" alt="Simulator Screen Shot - iPhone 8 - 2022-02-22 at 17 31 02" width="200px">
 <img src="https://user-images.githubusercontent.com/38001452/155103866-335f2867-8e6c-42f0-a0db-28c882e2cbb1.png" alt="Simulator Screen Shot - iPhone 8 - 2022-02-22 at 17 31 12" width="200px">
-<img src="https://user-images.githubusercontent.com/38001452/155103870-6138cffe-cec3-45fb-af6b-36f675d5c19c.png" alt="Simulator Screen Shot - iPhone 8 - 2022-02-22 at 17 31 44" width="200px"></p>
+<img src="https://user-images.githubusercontent.com/38001452/155103870-6138cffe-cec3-45fb-af6b-36f675d5c19c.png" alt="Simulator Screen Shot - iPhone 8 - 2022-02-22 at 17 31 44" width="200px">
+<img src="https://user-images.githubusercontent.com/38001452/155323866-ba2e2d1c-91ac-42eb-97ef-64ada6eb9987.png" alt="Simulator Screen Shot - iPhone 8 - 2022-02-22 at 17 31 44" width="200px">
+</p>
