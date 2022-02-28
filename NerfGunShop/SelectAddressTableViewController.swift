@@ -54,21 +54,30 @@ class SelectAddressTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .destructive, title: "Delete", handler: {action, view, completion in
-            deleteAddress(address: self.addresses[indexPath.row])
-            self.addresses = getAddresses()
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        })
-        
-        return UISwipeActionsConfiguration(actions: [action])
+        if !addresses.isEmpty {
+            let action = UIContextualAction(style: .destructive, title: "Delete", handler: {action, view, completion in
+                deleteAddress(address: self.addresses[indexPath.row])
+                self.addresses = getAddresses()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            
+            return UISwipeActionsConfiguration(actions: [action])
+        } else {
+            return nil
+        }
     }
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "Edit", handler: {action, view, completion in
-            self.performSegue(withIdentifier: "toEditAddress", sender: indexPath)
-        })
+        if !addresses.isEmpty {
+            let action = UIContextualAction(style: .normal, title: "Edit", handler: {action, view, completion in
+                self.performSegue(withIdentifier: "toEditAddress", sender: indexPath)
+            })
+            
+            return UISwipeActionsConfiguration(actions: [action])
+        } else {
+            return nil
+        }
         
-        return UISwipeActionsConfiguration(actions: [action])
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
