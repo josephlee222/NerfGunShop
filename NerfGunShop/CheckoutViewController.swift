@@ -28,6 +28,7 @@ class CheckoutViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         credits = getLoggedInUser().credits
+        payBtn.isEnabled = false
         
         if totalPrice != nil {
             payableLbl.text = "\(totalPrice ?? 0) Credits"
@@ -59,9 +60,9 @@ class CheckoutViewController: UIViewController {
                 discounted = true
                 discount = Int.random(in: 0...20)
                 totalPrice = Int16((Float(totalPrice) / 100) * (100 - Float(discount)))
-                payableLbl.text = "\(totalPrice!) Credits\nAfter \(discount)% Discount"
                 updateCreditLbl()
                 if discount != 0 {
+                    payableLbl.text = "\(totalPrice!) Credits\nAfter \(discount)% Discount"
                     self.present(createSimpleAlert(title: "Yay, A Discount!", message: "A \(discount)% discount has been added to your checkout"), animated: true, completion: nil)
                 } else {
                     self.present(createSimpleAlert(title: "Oops, No Discount", message: "No discount has been added."), animated: true, completion: nil)
@@ -80,7 +81,6 @@ class CheckoutViewController: UIViewController {
         } else {
             creditsLbl.text = "\(credits ?? 0) Credits\n\(credits - totalPrice) Credits after payment"
             creditsLbl.textColor = UIColor.label
-            payBtn.isEnabled = true
         }
     }
     
@@ -95,6 +95,7 @@ class CheckoutViewController: UIViewController {
                     let location = placemarks.first?.location
                 else {
                     self.timeLbl.text = "Error getting coodinates from address"
+                    self.payBtn.isEnabled = false
                     return
                 }
                 
@@ -117,6 +118,10 @@ class CheckoutViewController: UIViewController {
                             weatherDescriptor = "Bad Weather Condition\nNext Day"
                         } else {
                             weatherDescriptor = "\((model.weather[0].description)?.capitalized ?? "Unknown")\nSame Day"
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.payBtn.isEnabled = true
                         }
                     }
                     catch let parsingError {

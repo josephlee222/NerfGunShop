@@ -94,6 +94,20 @@ class SelectAddressTableViewController: UITableViewController {
         performSegue(withIdentifier: "toAddAddress", sender: nil)
     }
     
+    @IBAction func sortBtn(_ sender: Any) {
+        let alert = UIAlertController(title: "Sort Addresses", message: "Sort addresses by", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Name", style: .default, handler: {action in
+            self.addresses = getSortedAddresses(type: .name)
+            self.tableView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Address", style: .default, handler: {action in
+            self.addresses = getSortedAddresses(type: .address)
+            self.tableView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func unwindToDeliveryList(segue:UIStoryboardSegue) {
         if segue.identifier == "fromAddAddress" {
             addresses = getAddresses()

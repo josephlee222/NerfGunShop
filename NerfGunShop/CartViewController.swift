@@ -41,15 +41,18 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             alert.addTextField(configurationHandler: {(tf) in
                 tf.placeholder = "Enter quantity"
                 tf.text = "\(self.cart[indexPath.row].qty)"
+                tf.keyboardType = .numberPad
             })
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: {action in
                 let tf = Int16(alert.textFields![0].text ?? "1")
                 
-                if tf! >= 1 {
-                    editCartQuantity(cart: self.cart[indexPath.row], qty: tf ?? self.cart[indexPath.row].qty)
-                } else if tf! < 1 {
-                    deleteCartItem(cartItem: self.cart[indexPath.row])
+                if tf != nil {
+                    if tf! >= 1 {
+                        editCartQuantity(cart: self.cart[indexPath.row], qty: tf ?? self.cart[indexPath.row].qty)
+                    } else if tf! < 1 {
+                        deleteCartItem(cartItem: self.cart[indexPath.row])
+                    }
                 }
                 
                 self.cart = getCart(userId: getUserId())

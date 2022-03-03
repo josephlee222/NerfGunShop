@@ -47,7 +47,12 @@ class ProductViewController: UIViewController {
             } else {
                 insertCart(userId: getUserId(), itemId: Int16(productId!), name: product!.name!, price: product!.price, qty: Int16(qty)!, image: (product?.image)!)
             }
-            self.present(createSimpleAlert(title: "Added to Cart", message: "Product has been added to your cart"), animated: true, completion: nil)
+            let alert = UIAlertController(title: "Added to Cart", message: "Product has been added to your cart", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "View Cart", style: .default, handler: {action in
+                self.performSegue(withIdentifier: "productToCart", sender: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
         } else {
             self.present(createSimpleAlert(title: "Unable to Add", message: "Please specify a quantity"), animated: true, completion: nil)
         }

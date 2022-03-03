@@ -369,6 +369,25 @@ func getAddresses() -> [Address] {
     return addresses ?? []
 }
 
+enum addressSort{
+    case name
+    case address
+}
+
+func getSortedAddresses(type:addressSort) -> [Address] {
+    let addressRequest:NSFetchRequest = Address.fetchRequest()
+    addressRequest.predicate = NSPredicate(format: "userId == '\(getUserId())'")
+    addressRequest.sortDescriptors = [NSSortDescriptor(key: type == .name ? "name" : "location", ascending: true)]
+    
+    var addresses:[Address]?
+    do {
+        addresses = try viewContext.fetch(addressRequest)
+    } catch {
+        print(error)
+    }
+    return addresses ?? []
+}
+
 func getAddress(id:Int16) -> Address {
     let addressRequest:NSFetchRequest = Address.fetchRequest()
     addressRequest.predicate = NSPredicate(format: "id == '\(id)'")

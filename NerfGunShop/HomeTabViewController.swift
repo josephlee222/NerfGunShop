@@ -9,7 +9,6 @@ import UIKit
 
 class ShopSearchViewController:UITableViewController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Init")
@@ -49,6 +48,7 @@ class ShopSearchViewController:UITableViewController {
 
 class HomeTabViewController: UITabBarController, UISearchResultsUpdating {
 
+    @IBOutlet var addCreditBtn: UIBarButtonItem!
     func updateSearchResults(for searchController: UISearchController) {
         let vc = searchController.searchResultsController as! ShopSearchViewController
         vc.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "searchItem")
@@ -66,6 +66,13 @@ class HomeTabViewController: UITabBarController, UISearchResultsUpdating {
         shopSearchController.searchBar.placeholder = "Search the store..."
         shopSearchController.searchResultsUpdater = self
         navigationItem.searchController = shopSearchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
+        addCreditBtn.title = "\(getLoggedInUser().credits)c"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        addCreditBtn.title = "\(getLoggedInUser().credits)c"
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -88,7 +95,7 @@ class HomeTabViewController: UITabBarController, UISearchResultsUpdating {
     }
     
     @IBAction func wishlistBtn(_ sender: Any) {
-        self.present(createSimpleAlert(title: "Wishlist press", message: "Placeholder"), animated: true, completion: nil)
+        performSegue(withIdentifier: "homeToAddCredit", sender: nil)
     }
     
     @IBAction func cartBtn(_ sender: Any) {
@@ -96,7 +103,15 @@ class HomeTabViewController: UITabBarController, UISearchResultsUpdating {
     }
     
     @IBAction func unwindToHome(segue:UIStoryboardSegue) {
-        
+        if segue.identifier == "productToCart" {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "toCart", sender: nil)
+            }
+        } else if segue.identifier == "toHome" {
+            DispatchQueue.main.async {
+                self.addCreditBtn.title = "\(getLoggedInUser().credits)c"
+            }
+        }
     }
     
     /*

@@ -16,6 +16,7 @@ class ShopViewController: UIViewController {
     @IBOutlet var carouselImg: UIImageView!
     
     var randomProductId:Int16?
+    let banners = ["nerf_banner", "xshot_banner", "darts_banner"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class ShopViewController: UIViewController {
         
         //Init the random item, returns ID in case user clicks the product
         randomProductId = initRandomProduct()
+        carouselImg.image = UIImage(named: banners[0])
     }
     
     // Function to init the random item view
@@ -64,7 +66,6 @@ class ShopViewController: UIViewController {
     @IBAction func swipeCarouselImg(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .left {
             // Swiped forward
-            print("Swiped left")
             if carouselPageControl.numberOfPages - 1 == carouselPageControl.currentPage {
                 carouselPageControl.currentPage = 0
             } else {
@@ -72,14 +73,13 @@ class ShopViewController: UIViewController {
             }
         } else if sender.direction == .right {
             // Swiped backward
-            print("Swiped right")
             if carouselPageControl.currentPage == 0 {
                 carouselPageControl.currentPage = 3
             } else {
                 carouselPageControl.currentPage -= 1
             }
-            
         }
+        carouselImg.image = UIImage(named: banners[carouselPageControl.currentPage])
     }
     
     
